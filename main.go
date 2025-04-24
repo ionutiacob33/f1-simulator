@@ -16,6 +16,7 @@ type StandingsResponse struct {
 					Points   string `json:"points"`
 					Driver   struct {
 						FamilyName string `json:"familyName"`
+						GivenName  string `json:"givenName"`
 					} `json:"Driver"`
 				} `json:"DriverStandings"`
 			} `json:"StandingsLists"`
@@ -48,10 +49,10 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("%-20s %s\n", "Driver", "Points")
+	fmt.Printf("%-25s %s\n", "Driver", "Points")
 	for _, standing := range standings.MRData.StandingsTable.StandingsLists[0].DriverStandings {
-		fmt.Printf("%-20s %s\n",
-			standing.Driver.FamilyName,
+		fmt.Printf("%-25s %s\n",
+			standing.Driver.GivenName+" "+standing.Driver.FamilyName,
 			standing.Points,
 		)
 	}
